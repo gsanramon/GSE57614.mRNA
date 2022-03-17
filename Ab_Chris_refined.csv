@@ -1,0 +1,135 @@
+protein_name,network_name,value
+14-3-3 zeta/delta (Ab-232),DAB1,0.82
+4E-BP1 (Ab-45),EIF4EBP1,0.92
+Abl1 (Ab-754/735),ABL1,1.3
+ACC1 (Ab-80),CDKN2A/p19ARF,0.93
+Actin Pan(a/b/g) (Ab-55/53),ATF2,0.93
+AKT1 (Ab-308),AKT1,1.37
+AKT1S1 (Ab-246),AKT1S1,0.82
+AKT2 (Ab-474),AKT2,1.18
+AMPKbeta1 (Ab-182),prkab1,1.28
+ASK1 (Ab-966),ASK1,1.13
+ATF2 (Ab-62/44),ATF2,0.57
+B-RAF (Ab-598),BRAF,0.74
+BCL-XL (Ab-47),BCL2L1,0.71
+BID (Ab-78),SGK1,0.8
+BLNK (Ab-96),BLNK,0.73
+BRCA1 (Ab-1524),BRCA1,1.29
+c-Abl (Ab-412),FGR,0.96
+c-Jun (Ab-243),JUN,0.81
+Calmodulin (Ab-79/81),JUNB,0.7
+CaMK2-beta/gamma/delta (Ab-287),CAMK2B,0.9
+CaMK2A (Ab-286),camk2a,1.07
+Caspase 1 (Ab-376),CASP1,0.76
+Caspase 8 (Ab-347),CASP8,0.85
+Caspase 9 (Ab-196),CASP9,0.72
+Catalase (Ab-385),MKNK1,0.7
+Catenin beta (Ab-37),ctnnb1,1.13
+CDC25C (Ab-216),CDC25C,0.62
+CDK1/CDC2 (Ab-15),PDPK1,1.17
+Chk1 (Ab-286),chek1,0.94
+Chk2 (Ab-68),chek2,0.95
+CPI17 alpha (Ab-38),ETS1,0.98
+CREB (Ab-133),CREB1,1.28
+CrkII (Ab-221),JAK2,0.93
+Cyclin E1 (Ab-77),SRF,0.49
+DARPP-32 (Ab-34),BIRC5,0.94
+EEF2 (Ab-56),BLC2,0.9
+eEF2K (Ab-366),eef2k,0.87
+EGFR (Ab-1172),EGFR,1.05
+eIF2A (Ab-51),eif2s1,1
+elF4E (Ab-209),irak1,0.93
+Elk1 (Ab-389),ELK1,0.85
+eNOS (Ab-1179),nos3,0.89
+FAK (Ab-910),ptk2,0.52
+FGFR1 (Ab-766),fgfr1,0.75
+FKHRL1/FOXO3A (Ab-253),foxo3,0.78
+Fos (Ab-374),Fos,0.91
+FOXO1/3/4-pan (Ab-24/32),foxo1,0.78
+Gab1 (Ab-627),GAB1,0.85
+GRK2 (Ab-29),hmgn2,0.67
+HDAC1 (Ab-421),hdac1,0.26
+HDAC2 (Ab-394),HDAC2,0.98
+HER2 (Ab-1221/1222),erbb2,0.91
+HSP27 (Ab-82),HSP27,1.09
+HSP90B (Ab-254),hsp90ab1,1.27
+IGF1R (Ab-1165/1166),igf1r,0.95
+IkB-alpha (Ab-32/36),nfkbia,0.8
+IkB-epsilon (Ab-22),IKBKE,0.79
+IKK alpha/beta (Ab-180/181),CHUK,1.18
+IKK-beta (Ab-199),ikbkb,0.88
+IKK-gamma (Ab-31),ikbkg,0.84
+IL-10R-alpha (Ab-496),IL10RA,1.06
+IL-4R/CD124 (Ab-497),IL4R,1.16
+Integrin beta-3 (Ab-773),itgb3,1.07
+Interferon-alpha/beta receptor alpha chain (Ab-466),ifnar1,0.86
+IRS-1 (Ab-312),IRS1,0.83
+JAK1 (Ab-1022),JAK1,0.84
+JAK2 (Ab-1007),JAK2,0.76
+JunB (Ab-259),JUNB,0.74
+Lamin A/C (Ab-392),lmna,0.51
+LCK (Ab-393),lck,0.83
+LKB1 (Ab-334),stk11,0.78
+LYN (Ab-507),lyn,0.76
+MAP3K7/TAK1 (Ab-439),MAP3K7,0.89
+MDM2 (Ab-166),mdm2,0.57
+MEK1 (Ab-291),MEK1/2,1.17
+Met (Ab-1234),met,0.95
+MITF (Ab-73),Mitf,0.86
+MKK4/SEK1 (Ab-80),MAP2K4,1.07
+MSK1 (Ab-360),rps6ka5,0.73
+mTOR (Ab-2481),mTORC2,0.85
+Myc (Ab-58),myc,1.11
+NFkB-p100/p52 (Ab-865),nfkb2,0.69
+NFkB-p105/p50 (Ab-927),nfkb1,0.61
+NFkB-p65 (Ab-529),rela,1.06
+p21Cip1 (Ab-145),cdkn1a,1.21
+P38 MAPK (Ab-182),MAPK14,1.04
+p44/42 MAP Kinase (Ab-202),ERK1/2,1.27
+p53 (Ab-315),trp53,0.65
+P70S6K (Ab-229),rps6kb1,1.06
+P73 (Ab-99),tp73,1.22
+P90RSK (Ab-359/363),RPS6KA1,0.66
+PAK1 (Ab-204),pak1,0.97
+PDGFR beta (Ab-1021),PDGFRB,0.81
+PDK1 (Ab-241),PDPK1,0.59
+PI3-kinase p85-subunit alpha/gamma (Ab-467/199),PI3K,0.95
+PKC delta (Ab-645),PRKCD,0.9
+PKC theta (Ab-676),prkcq,1.03
+PLCG1 (Ab-783),PLCG1,0.93
+PLK1 (Ab-210),plk1,0.94
+PP1 alpha (Ab-320),PPP1CA,0.85
+PP2A-alpha (Ab-307),PPP2CA,0.65
+PPAR-gamma (Ab-112),PPARG,0.54
+PTEN (Ab-380),pten,1.01
+Raf1 (Ab-43),raf1,0.51
+Ras-GRF1 (Ab-916),RASGRF1,1.04
+Rb (Ab-807),N/A,0.9
+RelB (Ab-552),RELB,1.19
+RSK1/2/3/4 (Ab-221/227/218/232),RPS6KA3,1.08
+SAPK/JNK (Ab-185),MAPK8,1.19
+Shc (Ab-349),SHC1,0.82
+SHP-2 (Ab-542),PTPN11,0.96
+Smad1 (Ab-465),Smad1,1.04
+Smad2 (Ab-255),Smad2,0.71
+Smad3 (Ab-425),Smad3,0.77
+Src (Ab-418),SRC,0.8
+SREBP-1 (Ab-439),SREBF1,1.06
+SRF (Ab-99),srf,0.8
+STAT1 (Ab-727),stat1,0.59
+STAT2 (Ab-690),stat2,0.81
+STAT3 (Ab-705),stat3,0.79
+STAT4 (Ab-693),stat4,0.84
+STAT5A (Ab-780),stat5a,0.71
+STAT5B (Ab-731),stat5b,0.89
+STAT6 (Ab-645),STAT6,0.88
+SYK (Ab-525),syk,0.97
+Synuclein alpha (Ab-125),park1,1.17
+Tau (Ab-235),mapt,0.76
+TGFBR1 (Ab-165),tgfbr1,0.99
+TGFBR2 (Ab-250),tgfbr2,0.74
+Trk B (Ab-515),trkb,0.97
+Tuberin/TSC2 (Ab-939),tsc2,0.59
+VASP (Ab-157),vasp,0.73
+VEGFR2 (Ab-1214),kdr,0.76
+Zap-70 (Ab-319),zap70,0.88
