@@ -1,0 +1,171 @@
+---
+title: "GSE57614.mRNA.data"
+output:
+  pdf_document: 
+    latex_engine: xelatex
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+#knitr::opts_chunk$set(echo = TRUE)
+```
+# Background
+The lab is tasked to do the following: (1) Identify signaling motifs driving or preventing M1 polarization, (2) Predict and validate their effects on downstream targets and (3) Incorporate or predict gene expression changes. To do the first task, candidate genes must be found. Thus, the following steps were taken:
+
+### I. Get annotations of proteins in Endoplasmic Reticulum (ER), specifically located in the membrane. ###
+Annotations for ER membrane proteins were manually searched, filtered and downloaded in UniProt website. There were 10,324 annotations, of which 2404 were unique proteins and 1326 are in the ER membrane. The filename for the downloaded file is 'ER.txt'. 
+
+Load ER list
+```{r}
+ER <- read.delim('ER.txt')
+dim(ER) #10324 annotations and 14 columns
+head(ER)
+#Find unique receptor proteins by searching for the phrase 'endoplasmic reticulum membrane' under column 'GO.NAME'
+ER.membrane <- ER[which(ER$GO.NAME == 'endoplasmic reticulum membrane'),]
+length(unique(ER.membrane$SYMBOL)) #This is the number of proteins in the ER membrane
+head(ER.membrane)
+```
+
+### II. Find genes that are highly expressed or repressed in M1 macrophages using RNA data that is publicly available from NCBI GEO website.
+
+**1. Retrieve the gene expression microarray experiment from NCBI with GEO accession # GSE57614. The study is about Transcriptomic analysis of human polarized macrophages. There are four experimental conditions: Resting macrophage (M0), M1 (stimulated using IFN-γ and LPS), M2a (by IL-4) and M2c (by IL-10). Transcription profiles were taken after 3 time points: 6, 12 and 24hrs, and each with 3 replicates.**
+
+**2. The online statistical tool GEO2R was used to examine the raw gene expression data. It utilizes R/Bioconductor and Limma package v3.26.8. It has inbuilt statistical methods such as T-test and Benjamini and Hochberg (false discovery rate) that were used to determine the differentially expressed genes (DEGs).**
+
+**3. Initial comparison between 6hr and 24hr groups in M1 macrophages reveal only 2 significant genes: SAA1 and NRP1. Hence, 24hr samples were chosen instead of 6 and 12hr. Two comparisons were made: (1) [M0 vs M1] and (2) [M2 vs M1]. M2a samples induced by IL-4 was chosen over M2c induced by IL-10.**
+
+**4. The two lists were downloaded and further processed. From these two lists of DEGs, genes with adj. p-value < 0.05 were considered significant. For [M0 vs M1], 579 genes are significant and for [M2 vs M1], 926 genes are significant. Out of these significant genes, 429 are found to be common in both lists.**
+
+
+The 2 RNA data files used here are:
+
+* M0vsM1 (24hr) - GSE57614.M0vsM1.24hr.txt
+* M2vsM1 (24hr) - GSE57614.M2vsM1.24hr.txt
+
+
+**M0 vs M1**
+```{r}
+#Load the file for M0 vs M1 (24hrs)
+M0vsM1.24hr <- read.delim('GSE57614.M0vsM1.24hr.txt')
+head(M0vsM1.24hr)
+#Extract < 5% FDR
+M0vsM1.24hr.fdr5 <- M0vsM1.24hr[which(M0vsM1.24hr$adj.P.Val < 0.05),]
+#dim(M0vsM1.24hr.fdr5) 
+
+#Get the significant genes that are unique minus the blanks ''
+M0M1 <- unique(M0vsM1.24hr.fdr5$Gene.symbol[-which(M0vsM1.24hr.fdr5$Gene.symbol=='')])
+length(M0M1) # 579 genes are significant
+```
+
+**M2 vs M1**
+
+```{r}
+#Load the file for M2 vs M1 (24hrs)
+M2vsM1.24hr <- read.delim('GSE57614.M2vsM1.24hr.txt')
+head(M2vsM1.24hr)
+#Extract < 5% FDR
+M2vsM1.24hr.fdr5 <- M2vsM1.24hr[which(M2vsM1.24hr$adj.P.Val < 0.05),]
+#dim(M2vsM1.24hr.fdr5) 
+
+#Get the significant genes that are unique minus the blanks ''
+M2M1 <- unique(M2vsM1.24hr.fdr5$Gene.symbol[-which(M2vsM1.24hr.fdr5$Gene.symbol=='')])
+length(M2M1) # 926 genes are significant
+```
+
+**Find the common genes in the two lists:**
+
+```{r}
+common2 <- Reduce(intersect, list(M2M1, M0M1))
+length(common2) #There are 429 genes common to M2vsM1 and M0vsM1
+#Remove hash to create a file
+#write.csv(common2, 'common2.csv')
+
+#show all 429 genes common to M2vsM1 and M0vsM1 lists
+#common2
+```
+
+**5. The 429 differentially expressed genes (DEGs) were cross-referenced to the list of genes located in Endoplasmic Reticulum membrane. As a result, 25 DEGs are found to be located in the ER membrane.**
+
+Find intersection between variables 'common2' and 'ER.membrane'
+
+```{r}
+ER.membrane.X.common2 <- Reduce(intersect, list(ER.membrane$SYMBOL, common2))
+length(ER.membrane.X.common2) #Number of DEGs in ER membrane
+```
+
+```{r}
+#List of DEGs in ER membrane 
+ER.membrane.X.common2
+```
+
+
+Get the data for the 25 ER membrane genes from **M2vsM1** RNA file
+
+```{r}
+data.M2vsM1.DEG.ERmem <- dplyr::filter(M2vsM1.24hr.fdr5, M2vsM1.24hr.fdr5$Gene.symbol %in% ER.membrane.X.common2)
+#sort according to logFC value
+sort.M2vsM1.DEG.ERmem <- data.M2vsM1.DEG.ERmem[order(data.M2vsM1.DEG.ERmem$logFC),]
+head(sort.M2vsM1.DEG.ERmem)
+#To create a file, remove hash below
+#write.csv(sort.M2vsM1.DEG.ERmem, 'sort.M2vsM1.DEG.ERmem.csv')
+
+```
+
+Get the data for the 25 ER membrane genes from **M0vsM1** RNA file
+
+```{r}
+data.M0vsM1.DEG.ERmem <- dplyr::filter(M0vsM1.24hr.fdr5, M0vsM1.24hr.fdr5$Gene.symbol %in% ER.membrane.X.common2)
+#sort according to logFC value
+sort.M0vsM1.DEG.ERmem <- data.M0vsM1.DEG.ERmem[order(data.M0vsM1.DEG.ERmem$logFC),]
+head(sort.M0vsM1.DEG.ERmem)
+#To create a file, remove hash below
+#write.csv(sort.M0vsM1.DEG.ERmem, 'sort.M0vsM1.DEG.ERmem.csv')
+
+```
+
+**6. To find available antibody, these 25 genes were cross-referenced to the Antibody list and found 1 match – SGK1 gene.**
+
+There are 2 antibody files:  
+1. Ab_Chris_refined.csv  
+2. phospho_Chris_refined.csv  
+
+**Load both antibody files and cross reference the 25 DEGs.**
+
+1. Using Ab_Chris_refined.csv file:
+```{r}
+#load Ab data
+Ab <- read.csv('Ab_Chris_refined.csv')
+dim(Ab)
+```
+
+The gene/s below is differentially expressed and located in the ER membrane.
+```{r}
+#cross reference the 25 DEGs to the antibody list
+ERmem.com.Ab <- Reduce(intersect, list(ER.membrane.X.common2, Ab$network_name))
+#show available antibody
+ERmem.com.Ab
+```
+
+2. Using phospho_Chris_refined.csv file:
+```{r}
+#load data for phospho Ab (this table doesn't have header)
+pAb <- read.csv('phospho_Chris_refined.csv', header=FALSE)
+dim(pAb)
+#add column names
+colnames(pAb) <- c('phospho.name', 'gene', 'phosphorylation')
+```
+
+The gene/s below is differentially expressed and located in the ER membrane.
+
+```{r}
+#cross reference the 25 DEGs to the phospho antibody list
+ERmem.com.pAb <- Reduce(intersect, list(ER.membrane.X.common2, pAb$gene))
+#show available antibody
+ERmem.com.pAb
+```
+
+
+
+
+
